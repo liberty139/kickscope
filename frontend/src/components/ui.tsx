@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 type Variant = "lime" | "light" | "glass" | "ghost" | "danger";
 
 const VARIANTS: Record<Variant, string> = {
-  lime: "bg-lime text-night hover:bg-lime-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_8px_24px_-10px_rgba(198,255,61,0.55)]",
+  lime: "bg-lime text-night hover:bg-lime-dark shadow-[inset_0_1px_0_rgba(255,255,255,0.5),0_8px_24px_-10px_rgba(175,80,255,0.55)]",
   light: "bg-chalk text-night hover:bg-white shadow-[inset_0_1px_0_rgba(255,255,255,0.6),0_8px_24px_-12px_rgba(255,255,255,0.35)]",
   glass: "border border-white/10 bg-white/[0.04] text-chalk shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] hover:bg-white/[0.08] hover:border-white/15",
   ghost: "text-chalk/75 hover:text-chalk hover:bg-white/5",

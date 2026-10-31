@@ -6,7 +6,7 @@ export function ScoreRing({ score, size = 132, label = "из 100" }: { score: nu
   const [ref, seen] = useInView<HTMLDivElement>(0.3);
   const r = 44;
   const len = 2 * Math.PI * r;
-  const color = score >= 85 ? "#2BD67B" : score >= 65 ? "#C6FF3D" : score >= 45 ? "#FFC145" : "#FF5A4F";
+  const color = score >= 85 ? "#2BD67B" : score >= 65 ? "#AF50FF" : score >= 45 ? "#FFC145" : "#FF5A4F";
   return (
     <div ref={ref} className="relative shrink-0" style={{ width: size, height: size }}>
       <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
@@ -39,7 +39,7 @@ export function LineChart({
   values,
   band,
   height = 120,
-  color = "#C6FF3D",
+  color = "#AF50FF",
   marker,
   className,
   labels,

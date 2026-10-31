@@ -337,7 +337,7 @@ function BallMarker({ meta, ball, onBall, disabled }: { meta: Meta; ball: Ball |
     >
       {ball && (
         <div
-          className="pointer-events-none absolute rounded-full border-2 border-lime bg-lime/15 shadow-[0_0_18px_rgba(198,255,61,0.6)]"
+          className="pointer-events-none absolute rounded-full border-2 border-lime bg-lime/15 shadow-[0_0_18px_rgba(175,80,255,0.6)]"
           style={{
             left: frame.ox + ball.x * frame.w,
             top: frame.oy + ball.y * frame.h,
@@ -380,18 +380,18 @@ function HowToFilm() {
       <Eyebrow>Как снимать</Eyebrow>
       <svg viewBox="0 0 320 150" className="mt-4 w-full" aria-hidden>
         <line x1="10" y1="120" x2="310" y2="120" stroke="rgba(255,255,255,0.18)" strokeWidth="2" />
-        <g stroke="#3DF2FF" strokeWidth="4" strokeLinecap="round" fill="none">
+        <g stroke="#E1BDFF" strokeWidth="4" strokeLinecap="round" fill="none">
           <circle cx="205" cy="36" r="8" />
           <path d="M205 44v34M205 52l-14 12M205 52l16 6M205 78l-10 22-4 20M205 78l20 14 12 18" />
         </g>
         <circle cx="248" cy="112" r="8" fill="#F4F7F2" />
         <g transform="translate(40 70)">
-          <rect x="0" y="0" width="34" height="22" rx="5" fill="#C6FF3D" />
+          <rect x="0" y="0" width="34" height="22" rx="5" fill="#AF50FF" />
           <circle cx="17" cy="11" r="6" fill="#08090A" />
-          <path d="M17 22v28M7 50h20" stroke="#C6FF3D" strokeWidth="3" />
+          <path d="M17 22v28M7 50h20" stroke="#AF50FF" strokeWidth="3" />
         </g>
-        <path d="M80 72 L190 60" stroke="#C6FF3D" strokeDasharray="4 6" strokeWidth="2" />
-        <text x="118" y="58" fill="#C6FF3D" fontSize="12" fontFamily="JetBrains Mono" fontWeight="700">4–6 м</text>
+        <path d="M80 72 L190 60" stroke="#AF50FF" strokeDasharray="4 6" strokeWidth="2" />
+        <text x="118" y="58" fill="#AF50FF" fontSize="12" fontFamily="JetBrains Mono" fontWeight="700">4–6 м</text>
       </svg>
       <ul className="mt-4 space-y-2 text-sm text-chalk/85">
         {[

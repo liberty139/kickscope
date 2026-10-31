@@ -53,7 +53,7 @@ function ball(ctx: CanvasRenderingContext2D, d: KickData, i: number, W: number, 
       const j = i - k * 2;
       if (j <= d.contact) break;
       const [x, y] = d.ball[j];
-      ctx.fillStyle = `rgba(198,255,61,${0.28 - k * 0.04})`;
+      ctx.fillStyle = `rgba(175,80,255,${0.28 - k * 0.04})`;
       ctx.beginPath();
       ctx.arc(x * W, y * H, r * (1 - k * 0.09), 0, Math.PI * 2);
       ctx.fill();
@@ -95,12 +95,12 @@ export function HeroKick({ onFrame, className }: { onFrame?: (i: number, d: Kick
       const { ctx, W, H, z } = prepare(c);
       const s = Math.max(0.55, W / 1000) / z;
       const p = expand(d.frames[i], W, H);
-      drawSkeleton(ctx, p, "right", { color: "#3DF2FF", kick: "#C6FF3D", width: 5 * s, glow: 18 });
-      drawAngle(ctx, p[R.hip], p[R.knee], p[R.ankle], "#C6FF3D", s * 1.1);
+      drawSkeleton(ctx, p, "right", { color: "#E1BDFF", kick: "#AF50FF", width: 5 * s, glow: 18 });
+      drawAngle(ctx, p[R.hip], p[R.knee], p[R.ankle], "#AF50FF", s * 1.1);
       ball(ctx, d, i, W, H, true, z);
       if (Math.abs(i - d.contact) <= 3) {
         const toe = p[R.foot];
-        ctx.strokeStyle = `rgba(198,255,61,${1 - Math.abs(i - d.contact) / 4})`;
+        ctx.strokeStyle = `rgba(175,80,255,${1 - Math.abs(i - d.contact) / 4})`;
         ctx.lineWidth = 3 * s;
         ctx.beginPath();
         ctx.arc(toe[0], toe[1], (14 + Math.abs(i - d.contact) * 12) * s, 0, Math.PI * 2);
@@ -162,7 +162,7 @@ export function GhostCompare({ frame, ghost, className }: { frame: number; ghost
         const gp = expand(pro.frames[Math.min(frame, pro.frames.length - 1)], W, H);
         drawSkeleton(ctx, gp, "right", { color: "rgba(244,247,242,0.95)", width: 5 * s, alpha: 0.5, joints: false });
       }
-      drawSkeleton(ctx, pp, "right", { color: "#3DF2FF", kick: "#C6FF3D", width: 5 * s, glow: 16 });
+      drawSkeleton(ctx, pp, "right", { color: "#E1BDFF", kick: "#AF50FF", width: 5 * s, glow: 16 });
       ball(ctx, pl, i, W, H, false, z);
       // At contact, mark where each support foot stands.
       if (ghost && Math.abs(i - pl.contact) <= 6) {

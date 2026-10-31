@@ -137,7 +137,7 @@ export function AppWindow() {
           <div className="mt-3 rounded-lg border border-white/6 bg-white/[0.015] p-2.5">
             <div className="relative">
               <svg viewBox="0 0 1000 60" preserveAspectRatio="none" className="h-10 w-full" aria-hidden>
-                <path d={kneePath} fill="none" stroke="rgba(198,255,61,0.75)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
+                <path d={kneePath} fill="none" stroke="rgba(175,80,255,0.75)" strokeWidth="2" vectorEffect="non-scaling-stroke" />
               </svg>
               <div ref={head} className="absolute -bottom-1 top-0 w-px bg-chalk shadow-[0_0_8px_rgba(255,255,255,0.8)]" style={{ left: 0 }}>
                 <span className="absolute -left-[3px] -top-1 h-[7px] w-[7px] rounded-full bg-chalk" />
@@ -222,8 +222,8 @@ export function KinematicsChart() {
         <svg viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" className="h-[260px] w-full md:h-[320px]" aria-label="Угол колена и скорость голени по кадрам">
           <defs>
             <linearGradient id="knee-fill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0" stopColor="#C6FF3D" stopOpacity="0.18" />
-              <stop offset="1" stopColor="#C6FF3D" stopOpacity="0" />
+              <stop offset="0" stopColor="#AF50FF" stopOpacity="0.18" />
+              <stop offset="1" stopColor="#AF50FF" stopOpacity="0" />
             </linearGradient>
           </defs>
           {PHASES.map((p, k) => (
@@ -236,12 +236,12 @@ export function KinematicsChart() {
             <line key={f} x1={0} x2={W} y1={top + f * (bottom - top)} y2={top + f * (bottom - top)} stroke="rgba(255,255,255,0.05)" vectorEffect="non-scaling-stroke" />
           ))}
           <path d={`${knee} L${W},${H} L0,${H} Z`} fill="url(#knee-fill)" className="transition-opacity delay-700 duration-1000" opacity={seen ? 1 : 0} />
-          <path d={knee} fill="none" stroke="#C6FF3D" strokeWidth="2.5" pathLength={1} className="draw-line" style={{ strokeDasharray: 1, strokeDashoffset: seen ? 0 : 1 }} />
-          <path d={shank} fill="none" stroke="#3DF2FF" strokeWidth="2" strokeOpacity="0.85" pathLength={1} className="draw-line" style={{ strokeDasharray: 1, strokeDashoffset: seen ? 0 : 1, animationDelay: "0.3s" }} />
+          <path d={knee} fill="none" stroke="#AF50FF" strokeWidth="2.5" pathLength={1} className="draw-line" style={{ strokeDasharray: 1, strokeDashoffset: seen ? 0 : 1 }} />
+          <path d={shank} fill="none" stroke="#E1BDFF" strokeWidth="2" strokeOpacity="0.85" pathLength={1} className="draw-line" style={{ strokeDasharray: 1, strokeDashoffset: seen ? 0 : 1, animationDelay: "0.3s" }} />
           <line x1={x} x2={x} y1={0} y2={H} stroke={hover === null ? "rgba(255,90,79,0.7)" : "rgba(255,255,255,0.5)"} vectorEffect="non-scaling-stroke" />
         </svg>
-        <span className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-night bg-lime shadow-[0_0_12px_#C6FF3D]" style={{ left: `${(x / W) * 100}%`, top: `${(ky / H) * 100}%` }} />
-        <span className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-night bg-cyan shadow-[0_0_12px_#3DF2FF]" style={{ left: `${(x / W) * 100}%`, top: `${(sy / H) * 100}%` }} />
+        <span className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-night bg-lime shadow-[0_0_12px_#AF50FF]" style={{ left: `${(x / W) * 100}%`, top: `${(ky / H) * 100}%` }} />
+        <span className="pointer-events-none absolute h-2.5 w-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-night bg-cyan shadow-[0_0_12px_#E1BDFF]" style={{ left: `${(x / W) * 100}%`, top: `${(sy / H) * 100}%` }} />
         {hover === null && (
           <span className="hud pointer-events-none absolute top-1 -translate-x-1/2 rounded-md bg-coral px-1.5 py-0.5 text-[10px] font-semibold text-night" style={{ left: `${(x / W) * 100}%` }}>
             контакт
@@ -268,8 +268,8 @@ export function MetricArt({ kind }: { kind: "knee" | "trunk" | "plant" | "shank"
       {kind === "knee" && (
         <g {...common}>
           <path d="M60 20 L100 62 L150 80" stroke={stroke} strokeWidth="5" />
-          <circle cx="100" cy="62" r="6" fill="#C6FF3D" />
-          <path d="M84 45 A 24 24 0 0 0 122 70" stroke="#C6FF3D" strokeWidth="2" strokeDasharray="3 4" />
+          <circle cx="100" cy="62" r="6" fill="#AF50FF" />
+          <path d="M84 45 A 24 24 0 0 0 122 70" stroke="#AF50FF" strokeWidth="2" strokeDasharray="3 4" />
           <circle cx="164" cy="84" r="9" fill="rgba(247,248,248,0.9)" />
         </g>
       )}
@@ -278,8 +278,8 @@ export function MetricArt({ kind }: { kind: "knee" | "trunk" | "plant" | "shank"
           <line x1="100" y1="10" x2="100" y2="100" stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" strokeDasharray="4 5" />
           <path d="M100 96 L112 22" stroke={stroke} strokeWidth="5" />
           <circle cx="114" cy="14" r="8" stroke={stroke} strokeWidth="4" />
-          <path d="M100 52 A 44 44 0 0 1 108 51" stroke="#C6FF3D" strokeWidth="2.5" />
-          <path d="M100 40 A 56 56 0 0 1 110 39" stroke="#C6FF3D" strokeWidth="2" strokeOpacity="0.5" />
+          <path d="M100 52 A 44 44 0 0 1 108 51" stroke="#AF50FF" strokeWidth="2.5" />
+          <path d="M100 40 A 56 56 0 0 1 110 39" stroke="#AF50FF" strokeWidth="2" strokeOpacity="0.5" />
         </g>
       )}
       {kind === "plant" && (
@@ -296,8 +296,8 @@ export function MetricArt({ kind }: { kind: "knee" | "trunk" | "plant" | "shank"
           <path d="M30 92 A 70 70 0 0 1 150 44" stroke="url(#metric-g)" strokeWidth="8" />
           <defs>
             <linearGradient id="metric-g" x1="0" x2="1">
-              <stop offset="0" stopColor="#3DF2FF" stopOpacity="0.2" />
-              <stop offset="1" stopColor="#3DF2FF" />
+              <stop offset="0" stopColor="#E1BDFF" stopOpacity="0.2" />
+              <stop offset="1" stopColor="#E1BDFF" />
             </linearGradient>
           </defs>
           <line x1="100" y1="92" x2="146" y2="50" stroke="rgba(247,248,248,0.9)" strokeWidth="3" />
@@ -308,15 +308,15 @@ export function MetricArt({ kind }: { kind: "knee" | "trunk" | "plant" | "shank"
         <g {...common}>
           <line x1="14" y1="92" x2="186" y2="92" stroke="rgba(255,255,255,0.12)" strokeWidth="1.5" />
           <path d="M14 92 C 50 92 56 26 76 26 C 96 26 102 92 140 92" stroke="rgba(247,248,248,0.55)" strokeWidth="3" />
-          <path d="M44 92 C 80 92 88 14 108 14 C 128 14 134 92 186 92" stroke="#3DF2FF" strokeWidth="3" />
-          <path d="M76 8 H108 M76 4 V12 M108 4 V12" stroke="#C6FF3D" strokeWidth="2" />
+          <path d="M44 92 C 80 92 88 14 108 14 C 128 14 134 92 186 92" stroke="#E1BDFF" strokeWidth="3" />
+          <path d="M76 8 H108 M76 4 V12 M108 4 V12" stroke="#AF50FF" strokeWidth="2" />
         </g>
       )}
       {kind === "backswing" && (
         <g {...common}>
           <path d="M70 14 L96 58 L62 86" stroke={stroke} strokeWidth="5" />
-          <path d="M84 40 A 22 22 0 0 0 80 72" stroke="#C6FF3D" strokeWidth="2" strokeDasharray="3 4" />
-          <circle cx="96" cy="58" r="6" fill="#C6FF3D" />
+          <path d="M84 40 A 22 22 0 0 0 80 72" stroke="#AF50FF" strokeWidth="2" strokeDasharray="3 4" />
+          <circle cx="96" cy="58" r="6" fill="#AF50FF" />
           <path d="M120 60 C 140 50 150 50 170 60" stroke="rgba(255,255,255,0.25)" strokeWidth="2" strokeDasharray="2 6" />
         </g>
       )}

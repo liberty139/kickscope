@@ -88,9 +88,9 @@ export default function Live() {
           while (buffer.current.length && buffer.current[0].t < now / 1000 - 4) buffer.current.shift();
           const p = toPx(frame, W, H);
           const s = W / 900;
-          drawSkeleton(ctx, p, null, { color: "#3DF2FF", width: 5 * s, glow: 16 });
-          const kl = drawAngle(ctx, p[L.hip], p[L.knee], p[L.ankle], "#C6FF3D", s);
-          const kr = drawAngle(ctx, p[R.hip], p[R.knee], p[R.ankle], "#C6FF3D", s);
+          drawSkeleton(ctx, p, null, { color: "#E1BDFF", width: 5 * s, glow: 16 });
+          const kl = drawAngle(ctx, p[L.hip], p[L.knee], p[L.ankle], "#AF50FF", s);
+          const kr = drawAngle(ctx, p[R.hip], p[R.knee], p[R.ankle], "#AF50FF", s);
           if (now - lastUi > 120) {
             lastUi = now;
             setKnees({ left: kl, right: kr });
@@ -207,7 +207,7 @@ export default function Live() {
             )}
             {last && status === "on" && (
               <div key={last.id} className="pointer-events-none absolute inset-0 flex items-start justify-center pt-6">
-                <div className="relative animate-pop rounded-2xl bg-lime px-5 py-3 text-night shadow-[0_0_40px_rgba(198,255,61,0.5)]">
+                <div className="relative animate-pop rounded-2xl bg-lime px-5 py-3 text-night shadow-[0_0_40px_rgba(175,80,255,0.5)]">
                   <Burst />
                   <p className="font-display text-lg font-semibold">Удар! Колено {Math.round(last.knee)}°</p>
                 </div>

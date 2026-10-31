@@ -120,7 +120,7 @@ export default function Result() {
           <Chain attempt={a} />
           <Card className="p-5">
             <Eyebrow>Угол колена по времени</Eyebrow>
-            <LineChart className="mt-4" values={an.series.knee} marker={an.phases.contact} color="#3DF2FF" height={110} />
+            <LineChart className="mt-4" values={an.series.knee} marker={an.phases.contact} color="#E1BDFF" height={110} />
             <p className="mt-2 text-xs text-fog">Пунктир — момент удара. Хорошо видно замах (провал) и разгибание к мячу.</p>
           </Card>
         </div>

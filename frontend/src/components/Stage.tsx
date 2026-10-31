@@ -127,12 +127,12 @@ export function Stage({ analysis, landmarks, reference, ghostFrames, ghostSwap, 
         ctx.stroke();
         ctx.restore();
       }
-      drawSkeleton(ctx, p, kick, { color: "#3DF2FF", kick: "#C6FF3D", width: 4 * s, glow: 14 });
-      drawAngle(ctx, p[K.hip], p[K.knee], p[K.ankle], "#C6FF3D", s);
+      drawSkeleton(ctx, p, kick, { color: "#E1BDFF", kick: "#AF50FF", width: 4 * s, glow: 14 });
+      drawAngle(ctx, p[K.hip], p[K.knee], p[K.ankle], "#AF50FF", s);
       if (Math.abs(i - ph.contact) <= 2) {
         const t = p[K.foot];
         ctx.save();
-        ctx.strokeStyle = "rgba(198,255,61,0.9)";
+        ctx.strokeStyle = "rgba(175,80,255,0.9)";
         ctx.lineWidth = 3 * s;
         ctx.beginPath();
         ctx.arc(t[0], t[1], (16 + Math.abs(i - ph.contact) * 10) * s, 0, Math.PI * 2);

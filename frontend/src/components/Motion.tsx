@@ -82,7 +82,7 @@ export function Burst({ count = 22, className }: { count?: number; className?: s
     Array.from({ length: count }, (_, i) => {
       const a = (i / count) * Math.PI * 2 + Math.random() * 0.4;
       const r = 80 + Math.random() * 90;
-      return { dx: Math.cos(a) * r, dy: Math.sin(a) * r - 40, rot: (Math.random() - 0.5) * 240, color: ["#C6FF3D", "#3DF2FF", "#F4F7F2", "#FFC145"][i % 4], w: 6 + (i % 3) * 3 };
+      return { dx: Math.cos(a) * r, dy: Math.sin(a) * r - 40, rot: (Math.random() - 0.5) * 240, color: ["#AF50FF", "#E1BDFF", "#F4F7F2", "#FFC145"][i % 4], w: 6 + (i % 3) * 3 };
     }),
   );
   return (
