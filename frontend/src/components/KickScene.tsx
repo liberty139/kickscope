@@ -5,7 +5,7 @@ import { drawAngle, drawSkeleton, R, type Pt } from "../lib/skeleton";
 type KickData = typeof kick.pro;
 
 /** kick.json stores 17 of the 33 points; put them back at their MediaPipe indices. */
-function expand(frame: number[][], W: number, H: number): Pt[] {
+export function expand(frame: number[][], W: number, H: number): Pt[] {
   const out: Pt[] = Array.from({ length: 33 }, () => [0, 0]);
   kick.points.forEach((idx, k) => (out[idx] = [frame[k][0] * W, frame[k][1] * H]));
   return out;
@@ -25,7 +25,7 @@ const BOX = (() => {
   return { x0, x1, y0, y1 };
 })();
 
-function prepare(c: HTMLCanvasElement) {
+export function prepare(c: HTMLCanvasElement) {
   const dpr = Math.min(window.devicePixelRatio || 1, 2);
   const W = c.clientWidth;
   const H = c.clientHeight;
@@ -46,7 +46,7 @@ function prepare(c: HTMLCanvasElement) {
   return { ctx, W, H, z };
 }
 
-function ball(ctx: CanvasRenderingContext2D, d: KickData, i: number, W: number, H: number, trail = true, z = 1) {
+export function ball(ctx: CanvasRenderingContext2D, d: KickData, i: number, W: number, H: number, trail = true, z = 1) {
   const r = Math.max(5 / z, d.ball_r * W);
   if (trail && i > d.contact) {
     for (let k = 1; k <= 6; k++) {

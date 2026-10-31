@@ -8,6 +8,7 @@ import { Logo } from "../components/Logo";
 import { CountUp, Reveal, ScrollText, Spot, Typewriter } from "../components/Motion";
 import { KinematicsChart, MetricArt } from "../components/Showcase";
 import { Sky } from "../components/Sky";
+import { HeroPanel } from "../components/HeroPanel";
 
 const reduced = () => window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -154,40 +155,67 @@ function Pass() {
 }
 
 function Hero() {
+  const pm = kick.player.metrics;
   return (
-    <section className="relative min-h-[100svh] overflow-hidden">
+    <section className="relative overflow-hidden">
       <Sky className="absolute inset-0" />
+      <div aria-hidden className="absolute inset-0 bg-[linear-gradient(90deg,rgba(9,9,9,0.86)_0%,rgba(9,9,9,0.6)_45%,rgba(9,9,9,0.3)_100%)]" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-b from-transparent to-night" />
-      <div aria-hidden className="streak pointer-events-none absolute left-[26%] top-[16%] hidden items-center lg:flex">
-        <span className="tail block h-[2px] w-[20vw] bg-gradient-to-r from-transparent via-white/40 to-white/90" />
-        <span className="block h-3 w-3 rounded-full bg-white shadow-[0_0_14px_4px_rgba(255,255,255,0.7)]" />
-      </div>
-      <div className="relative mx-auto grid min-h-[100svh] max-w-[1200px] items-center gap-12 px-6 pb-28 pt-32 lg:grid-cols-[minmax(0,1fr)_440px] lg:pt-24">
+      <div className="relative mx-auto grid max-w-[1240px] items-center gap-12 px-6 pb-24 pt-28 lg:min-h-[100svh] lg:grid-cols-[minmax(0,1fr)_minmax(0,1.04fr)] lg:gap-14 lg:pb-20 lg:pt-28">
         <div>
-          <h1 className="text-chalk">
-            <span className="word-in serif-i block text-[clamp(72px,11vw,150px)] leading-[0.9]">Рентген</span>
-            <span className="word-in block text-[clamp(38px,5vw,64px)] font-normal leading-[1] tracking-[-0.045em]" style={{ animationDelay: "120ms" }}>
+          <p className="hud word-in text-[11px] uppercase tracking-[0.22em] text-lavender">Биомеханика удара · игрокам и академиям</p>
+          <h1 className="mt-6 text-chalk">
+            <span className="word-in serif-i block text-[clamp(64px,8.4vw,124px)] leading-[0.92]" style={{ animationDelay: "80ms" }}>
+              Рентген
+            </span>
+            <span className="word-in block text-[clamp(34px,4.1vw,56px)] font-normal leading-[1.02] tracking-[-0.045em]" style={{ animationDelay: "160ms" }}>
               футбольного удара
             </span>
-            <span className="word-in serif-i block text-[clamp(42px,5.4vw,74px)] leading-[1.1] text-chalk/70" style={{ animationDelay: "240ms" }}>
+            <span className="word-in serif-i block text-[clamp(38px,4.7vw,66px)] leading-[1.12] text-chalk/70" style={{ animationDelay: "240ms" }}>
               в твоём телефоне
             </span>
           </h1>
-          <p className="word-in mt-8 text-[20px] font-medium leading-snug" style={{ animationDelay: "380ms" }}>
-            Без датчиков и лабораторий.
-            <br />
-            Только камера телефона.
+          <p className="word-in mt-7 max-w-[520px] text-[18px] leading-relaxed text-chalk/80" style={{ animationDelay: "340ms" }}>
+            Сними один удар сбоку. Kickscope построит скелет, найдёт точку контакта, наложит эталон и подскажет, что исправить.
           </p>
-          <Link to="/demo" className="word-in group mt-8 inline-flex items-center gap-5 text-[20px] font-light" style={{ animationDelay: "480ms" }}>
-            Смотреть разбор за 60 с
-            <span className="relative flex h-14 w-14 items-center justify-center rounded-full border border-chalk/40 transition group-hover:border-chalk">
-              <span className="absolute inset-0 rounded-full bg-violet/30 blur-md transition group-hover:bg-violet/50" />
-              <Play className="relative h-5 w-5 fill-violet text-violet" />
-            </span>
-          </Link>
+          <div className="word-in mt-9 flex flex-wrap gap-3" style={{ animationDelay: "420ms" }}>
+            <Link to="/analyze" className="inline-flex h-[52px] items-center gap-2 rounded-lg bg-violet px-6 text-[15px] font-medium text-white shadow-[0_0_36px_rgba(175,80,255,0.45)] transition hover:bg-[#bd6bff]">
+              Разобрать мой удар <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link to="/demo" className="btn-outline inline-flex h-[52px] items-center gap-2 px-6 text-[15px] text-chalk">
+              <Play className="h-3.5 w-3.5" /> Пример разбора
+            </Link>
+          </div>
+          <div className="word-in mt-12 grid max-w-[560px] grid-cols-3 gap-6 border-t border-chalk/12 pt-6" style={{ animationDelay: "500ms" }}>
+            {[
+              ["1", "телефон — всё оборудование"],
+              ["33", "точки тела на каждом кадре"],
+              ["6", "биомеханических показателей"],
+            ].map(([v, t]) => (
+              <div key={t}>
+                <p className="hud text-[34px] leading-none text-chalk">{v}</p>
+                <p className="mt-2 text-[13px] leading-snug text-fog">{t}</p>
+              </div>
+            ))}
+          </div>
+          <p className="hud word-in mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[11px] uppercase tracking-[0.2em] text-lavender" style={{ animationDelay: "560ms" }}>
+            {["Съёмка", "Скелет", "Эталон", "Совет"].map((w, i) => (
+              <span key={w} className="flex items-center gap-3">
+                {i > 0 && <span className="text-chalk/40">→</span>}
+                {w}
+              </span>
+            ))}
+          </p>
         </div>
-        <div className="word-in flex justify-center lg:justify-end" style={{ animationDelay: "560ms" }}>
-          <Pass />
+        <div className="word-in min-w-0" style={{ animationDelay: "280ms" }}>
+          <HeroPanel />
+          <div className="mt-3 flex items-start gap-4 rounded-[14px] border border-chalk/10 bg-[#0b0b0d]/85 p-4 backdrop-blur">
+            <Sparkles className="mt-0.5 h-4 w-4 shrink-0 text-violet" />
+            <p className="text-[14px] leading-relaxed text-chalk/85">
+              <span className="hud mr-2 text-[10px] uppercase tracking-[0.16em] text-lavender">совет</span>
+              Опорная нога стоит на {Math.round(Math.abs(pm.plant_offset))} см позади точки удара, корпус завален назад на {Math.round(Math.abs(pm.trunk_lean))}°. Ставь стопу сбоку от мяча.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -724,11 +752,15 @@ function Final() {
       <Sky className="absolute inset-0" scale={0.4} />
       <div aria-hidden className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-night to-transparent" />
       <div aria-hidden className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-night" />
-      <div className="relative mx-auto max-w-[1200px] px-6 pb-40 pt-48 md:pb-52 md:pt-60">
+      <div aria-hidden className="streak pointer-events-none absolute left-[22%] top-[22%] hidden items-center lg:flex">
+        <span className="tail block h-[2px] w-[20vw] bg-gradient-to-r from-transparent via-white/40 to-white/90" />
+        <span className="block h-3 w-3 rounded-full bg-white shadow-[0_0_14px_4px_rgba(255,255,255,0.7)]" />
+      </div>
+      <div className="relative mx-auto grid max-w-[1200px] items-center gap-14 px-6 pb-40 pt-48 md:pb-52 md:pt-60 lg:grid-cols-[minmax(0,1fr)_440px]">
         <Reveal>
           <h2>
-            <span className="serif-i block text-[clamp(84px,14vw,190px)] leading-[0.85]">Бей</span>
-            <span className="block text-[clamp(48px,8vw,110px)] font-normal leading-[0.95] tracking-[-0.05em]">точно.</span>
+            <span className="serif-i block text-[clamp(84px,13vw,180px)] leading-[0.85]">Бей</span>
+            <span className="block text-[clamp(48px,7.4vw,104px)] font-normal leading-[0.95] tracking-[-0.05em]">точно.</span>
           </h2>
           <p className="mt-8 max-w-md text-[20px] font-light leading-snug text-chalk/85">Сними один удар сегодня. Он станет точкой отсчёта для каждого следующего.</p>
           <div className="mt-10 flex flex-wrap gap-3">
@@ -739,6 +771,9 @@ function Final() {
               Смотреть демо
             </Link>
           </div>
+        </Reveal>
+        <Reveal delay={150} className="flex justify-center lg:justify-end">
+          <Pass />
         </Reveal>
       </div>
     </section>
