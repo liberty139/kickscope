@@ -106,8 +106,9 @@ def compare(analysis: dict, ref: dict) -> dict:
     zs = {r["key"]: (0.0 if METRICS[r["key"]].get("higher_is_better") and r["z"] > 0 else r["z"]) for r in rows if r["z"] is not None}
     by_phase["base"] = round((z_to_score(zs["plant_offset"]) + z_to_score(zs["trunk_lean"])) / 2, 1)
 
-    metric_score = float(np.mean([z_to_score(z) for z in zs.values()]))
-    overall = round(0.4 * sim + 0.6 * metric_score)
+    metric_scores = [z_to_score(z) for z in zs.values()]
+    # One big fault should not drown in five good numbers: the worst metric costs extra.
+    overall = round(max(0.0, 0.4 * sim + 0.6 * float(np.mean(metric_scores)) - 0.25 * (100 - min(metric_scores))))
 
     # Ghost: for every kicker frame, which reference frame to draw.
     ref_w0, ref_w1 = ref["template_window"]

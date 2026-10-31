@@ -1,0 +1,340 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Near-black neutrals with one brand accent; colour is reserved for data. */
+  --color-night: #08090a;
+  --color-deep: #0f1011;
+  --color-panel: #141516;
+  --color-raise: #1c1d1f;
+  --color-turf: #0c2a20;
+  --color-lime: #c6ff3d;
+  --color-lime-dark: #b4ec2a;
+  --color-cyan: #3df2ff;
+  --color-coral: #ff5a4f;
+  --color-amber: #ffc145;
+  --color-mint: #2bd67b;
+  --color-chalk: #f7f8f8;
+  --color-fog: #8a8f98;
+  --color-dim: #62666d;
+  --color-line: rgb(255 255 255 / 0.08);
+
+  --animate-rise: rise 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  --animate-pop: pop 0.45s cubic-bezier(0.2, 1.4, 0.4, 1) both;
+  --animate-float: float 5s ease-in-out infinite;
+
+  @keyframes rise {
+    0% { transform: translateY(18px); opacity: 0; }
+    100% { transform: none; opacity: 1; }
+  }
+  @keyframes pop {
+    0% { transform: scale(0.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--color-night);
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-night text-chalk font-sans antialiased;
+  font-weight: 450;
+  font-optical-sizing: auto;
+  font-feature-settings: "cv01", "ss03";
+  text-rendering: optimizeLegibility;
+}
+
+.font-display {
+  letter-spacing: -0.028em;
+}
+
+::selection {
+  background: rgb(198 255 61 / 0.3);
+}
+
+/* Big headings: white fading to grey, the way light falls on a matte surface. */
+.text-grad {
+  background: linear-gradient(180deg, #fff 25%, rgb(255 255 255 / 0.58) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.text-grad-lime {
+  background: linear-gradient(100deg, #e4ff9e 0%, #c6ff3d 45%, #3df2ff 120%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* App pages: the same quiet black with a single soft light from above. */
+.pitch-bg {
+  background:
+    radial-gradient(60% 420px at 50% -120px, rgb(255 255 255 / 0.06), transparent 70%),
+    var(--color-night);
+}
+
+.pitch-lines,
+.grid-bg {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 10%, transparent 75%);
+}
+
+.dots-bg {
+  background-image: radial-gradient(rgb(255 255 255 / 0.12) 1px, transparent 1px);
+  background-size: 18px 18px;
+}
+
+.glass {
+  background: rgb(20 21 22 / 0.7);
+  border: 1px solid rgb(255 255 255 / 0.08);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+}
+
+.card {
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.035), rgb(255 255 255 / 0.01));
+  border: 1px solid rgb(255 255 255 / 0.08);
+  border-radius: 1rem;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.04);
+}
+
+/* Product frames on the landing: dark glass with a hairline highlight on the top edge. */
+.frame {
+  background: linear-gradient(180deg, #121315, #0b0c0d);
+  border: 1px solid rgb(255 255 255 / 0.09);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.06),
+    0 0 0 1px rgb(0 0 0 / 0.6),
+    0 50px 120px -40px rgb(0 0 0 / 0.9);
+}
+
+.hud {
+  font-family: var(--font-mono);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.text-glow {
+  text-shadow: 0 0 24px rgb(198 255 61 / 0.45);
+}
+
+.hairline {
+  background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.12) 20%, rgb(255 255 255 / 0.12) 80%, transparent);
+  height: 1px;
+}
+
+/* Cursor spotlight: a soft light inside the card and a brighter rim on its border. */
+.spot {
+  position: relative;
+  isolation: isolate;
+}
+.spot::before,
+.spot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.spot::before {
+  z-index: -1;
+  background: radial-gradient(420px circle at var(--x, 50%) var(--y, 50%), rgb(255 255 255 / 0.06), transparent 45%);
+}
+.spot::after {
+  padding: 1px;
+  background: radial-gradient(300px circle at var(--x, 50%) var(--y, 50%), rgb(255 255 255 / 0.35), transparent 45%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+.spot:hover::before,
+.spot:hover::after {
+  opacity: 1;
+}
+
+/* A light that runs around a frame's border. */
+@property --beam-a {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.beam-border {
+  position: relative;
+}
+.beam-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  pointer-events: none;
+  background: conic-gradient(from var(--beam-a), transparent 0 64%, rgb(198 255 61 / 0.9) 76%, rgb(61 242 255 / 0.9) 86%, transparent 94%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 2;
+}
+
+.range-thin {
+  appearance: none;
+  background: transparent;
+}
+.range-thin::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 0.12);
+}
+.range-thin::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border-radius: 999px;
+  background: var(--color-chalk);
+  box-shadow: 0 0 0 4px rgb(255 255 255 / 0.12), 0 2px 6px rgb(0 0 0 / 0.5);
+}
+.range-thin::-moz-range-track {
+  height: 4px;
+  border-radius: 9px;
+  background: rgb(255 255 255 / 0.12);
+}
+.range-thin::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--color-chalk);
+}
+
+/* --- Motion ---------------------------------------------------------------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  filter: blur(6px);
+  transition:
+    opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 1s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.reveal.is-in {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@keyframes word-in {
+  from { opacity: 0; transform: translateY(0.3em); filter: blur(12px); }
+  to { opacity: 1; transform: none; filter: none; }
+}
+@keyframes sheen {
+  0% { transform: translateX(-130%) skewX(-18deg); }
+  30%, 100% { transform: translateX(260%) skewX(-18deg); }
+}
+@keyframes scan {
+  0% { top: -8%; opacity: 0; }
+  10%, 85% { opacity: 1; }
+  100% { top: 104%; opacity: 0; }
+}
+@keyframes beam {
+  0%, 100% { transform: rotate(var(--r0)); }
+  50% { transform: rotate(var(--r1)); }
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+@keyframes ping-dot {
+  0% { transform: scale(1); opacity: 0.7; }
+  80%, 100% { transform: scale(2.6); opacity: 0; }
+}
+@keyframes draw {
+  from { stroke-dashoffset: var(--len, 1); }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes page-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes burst {
+  0% { transform: translate(-50%, -50%) scale(0.3) rotate(0); opacity: 1; }
+  100% { transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1) rotate(var(--rot)); opacity: 0; }
+}
+@keyframes net {
+  0%, 100% { transform: scale(1); }
+  30% { transform: scale(1.06, 0.95); }
+  60% { transform: scale(0.98, 1.03); }
+}
+@keyframes beam-spin {
+  to { --beam-a: 360deg; }
+}
+@keyframes flow {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(400%); }
+}
+@keyframes flow-y {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(400%); }
+}
+@keyframes aurora {
+  0%, 100% { transform: translate3d(-4%, 0, 0) scale(1); opacity: 0.85; }
+  50% { transform: translate3d(4%, 3%, 0) scale(1.08); opacity: 1; }
+}
+@keyframes caret {
+  50% { opacity: 0; }
+}
+@keyframes pitch-run {
+  from { background-position: 0 0; }
+  to { background-position: 0 64px; }
+}
+
+.burst-bit {
+  animation: burst 1s cubic-bezier(0.15, 0.8, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .word-in { animation: word-in 1s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .sheen { position: relative; overflow: hidden; isolation: isolate; }
+  .sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    width: 45%;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 0.45), transparent);
+    animation: sheen 5s ease-in-out 1.5s infinite;
+    pointer-events: none;
+  }
+  .scan-line { animation: scan 4s ease-in-out infinite; }
+  .beam { animation: beam 9s ease-in-out infinite; }
+  .animate-marquee { animation: marquee 50s linear infinite; }
+  .marquee:hover .animate-marquee { animation-play-state: paused; }
+  .ping-dot { animation: ping-dot 1.6s cubic-bezier(0, 0, 0.2, 1) infinite; }
+  .is-in .draw-line { animation: draw 1.8s cubic-bezier(0.6, 0, 0.3, 1) both; }
+  .page-in { animation: page-in 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .net-shake { animation: net 0.6s ease-out; }
+  .beam-border::before { animation: beam-spin 7s linear infinite; }
+  .flow { animation: flow 2.8s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
+  .flow-y { animation: flow-y 2.8s cubic-bezier(0.5, 0, 0.5, 1) infinite; }
+  .aurora { animation: aurora 14s ease-in-out infinite; }
+  .caret { animation: caret 1s steps(1) infinite; }
+  .pitch-run { animation: pitch-run 2.4s linear infinite; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+}

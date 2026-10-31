@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/.venv
+**/__pycache__
+**/.pytest_cache
+backend/data
+data
+frontend/public/models
+frontend/public/mediapipe
+.env
+.env.*
+.git
+.claude

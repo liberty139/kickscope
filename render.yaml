@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: kickscope
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    envVars:
+      # Advice falls back to checked templates; set OLLAMA_API_KEY in the dashboard and remove this to use the LLM.
+      - key: KICKSCOPE_LLM
+        value: "off"
